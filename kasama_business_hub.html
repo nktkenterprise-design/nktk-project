@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasama Business Adverts - Northern Province</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kasama: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        copper: {
+                            500: '#d97706',
+                            600: '#b45309',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
+    </style>
+</head>
+<body class="h-full flex flex-col text-slate-900 bg-slate-50 antialiased selection:bg-kasama-500 selection:text-white">
+
+    <!-- Top Greeting Banner -->
+    <div class="bg-slate-900 text-white text-sm py-2.5 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span class="bg-amber-400 text-slate-950 font-extrabold text-xs px-2.5 py-1 rounded-full uppercase">Muli Shani!</span>
+        <span>Welcome to Kasama Business Adverts - Free & Simple Local Marketplace</span>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-30 bg-white border-b-2 border-slate-200 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+            <!-- Logo -->
+            <div onclick="resetFilters()" class="flex items-center gap-3 cursor-pointer">
+                <div class="w-12 h-12 bg-kasama-600 rounded-2xl flex items-center justify-center text-white text-2xl shadow-md">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading font-extrabold text-xl sm:text-2xl text-slate-900 leading-none">
+                        KASAMA <span class="text-kasama-600">ADVERTS</span>
+                    </h1>
+                    <p class="text-xs font-semibold text-slate-500 mt-0.5">Kasama & Northern Province Market</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2">
+                <button onclick="openShareModal()" class="hidden md:flex items-center gap-1.5 bg-amber-100 hover:bg-amber-200 text-amber-900 font-extrabold px-3 py-2.5 rounded-2xl border border-amber-300 text-xs transition">
+                    <i class="fa-solid fa-gift text-amber-600 text-sm"></i>
+                    <span>Share for Discount</span>
+                </button>
+                <button onclick="openFeedbackModal()" class="hidden sm:flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold px-3 py-2.5 rounded-2xl border border-slate-300 text-xs transition">
+                    <i class="fa-solid fa-comment-dots text-slate-600 text-sm"></i>
+                    <span>Feedback</span>
+                </button>
+                <!-- Big Post Advert Button -->
+                <button onclick="openWizard()" class="bg-kasama-600 hover:bg-kasama-700 active:scale-95 text-white font-extrabold px-4 sm:px-6 py-3 rounded-2xl shadow-lg shadow-kasama-600/30 flex items-center gap-2 transition text-sm sm:text-base">
+                    <i class="fa-solid fa-circle-plus text-xl"></i>
+                    <span>POST ADVERT</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6 space-y-6">
+
+        <!-- Fraud Warning & Share Banner -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="md:col-span-2 bg-amber-50 border-2 border-amber-300 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 bg-amber-500 text-slate-950 rounded-xl flex items-center justify-center text-xl shrink-0 font-bold">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div>
+                        <h2 class="font-heading font-bold text-slate-900 text-base">Safety Tip for Kasama Buyers & Sellers</h2>
+                        <p class="text-xs text-slate-700 mt-0.5">
+                            Never send Airtel or MTN Mobile Money before seeing the item. Always meet in public places like Kasama Central Market or Town Center.
+                        </p>
+                    </div>
+                </div>
+                <button onclick="openSecurityModal()" class="w-full sm:w-auto bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-xs whitespace-nowrap transition">
+                    <i class="fa-solid fa-circle-info mr-1"></i> Read Safety Rules
+                </button>
+            </div>
+
+            <!-- Share for Discount Promo Card -->
+            <div class="bg-gradient-to-br from-kasama-700 to-kasama-900 text-white rounded-2xl p-4 flex flex-col justify-between border-2 border-kasama-600 shadow-md">
+                <div class="flex items-center justify-between mb-1">
+                    <span class="bg-amber-400 text-slate-950 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase">K5 OFF DISCOUNT</span>
+                    <i class="fa-solid fa-bullhorn text-amber-300 text-lg"></i>
+                </div>
+                <div>
+                    <h3 class="font-heading font-extrabold text-sm">Tell Friends & Save Kwacha!</h3>
+                    <p class="text-[11px] text-kasama-200 mt-0.5">Share this site on WhatsApp to get K5 off your advert fee.</p>
+                </div>
+                <button onclick="openShareModal()" class="mt-3 w-full bg-white hover:bg-slate-100 text-kasama-900 font-extrabold py-2 rounded-xl text-xs transition flex items-center justify-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i> Share & Claim Code
+                </button>
+            </div>
+        </div>
+
+        <!-- Easy Search Bar -->
+        <div class="bg-white p-3 rounded-2xl border-2 border-slate-200 shadow-sm flex items-center gap-3">
+            <i class="fa-solid fa-magnifying-glass text-xl text-slate-400 ml-2"></i>
+            <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Type what you are looking for (e.g. Maize, Phone, Lodging)..." 
+                class="w-full text-base py-1.5 bg-transparent focus:outline-none font-medium placeholder:text-slate-400">
+            <button onclick="resetFilters()" class="text-xs font-bold text-slate-500 hover:text-slate-800 px-2 py-1">Clear</button>
+        </div>
+
+        <!-- Easy Category Buttons -->
+        <div>
+            <p class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-2 flex items-center gap-1.5">
+                <i class="fa-solid fa-hand-pointer text-kasama-600"></i> Tap a category to view items:
+            </p>
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="categoryButtons">
+                <!-- Javascript will inject categories here -->
+            </div>
+        </div>
+
+        <!-- Results Counter -->
+        <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+            <h2 class="font-heading font-bold text-lg text-slate-900" id="resultsTitle">
+                Latest Kasama Adverts
+            </h2>
+            <span class="text-xs font-bold bg-slate-200 text-slate-700 px-3 py-1 rounded-full" id="adCount">
+                0 Items
+            </span>
+        </div>
+
+        <!-- Advert Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="advertsGrid">
+            <!-- Cards rendered dynamically -->
+        </div>
+
+        <!-- Empty Search State -->
+        <div id="emptyState" class="hidden text-center py-12 bg-white rounded-2xl border-2 border-dashed border-slate-200 p-6">
+            <i class="fa-solid fa-store-slash text-4xl text-slate-300 mb-3"></i>
+            <h3 class="font-heading font-bold text-lg text-slate-800">No Adverts Found</h3>
+            <p class="text-xs text-slate-500 mt-1 max-w-sm mx-auto">We couldn't find anything matching your search. Try searching something else or post your own advert!</p>
+            <button onclick="resetFilters()" class="mt-4 bg-slate-900 text-white font-bold text-xs px-4 py-2 rounded-xl">
+                Show All Adverts
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Post Advert Step-by-Step Wizard Modal -->
+    <div id="wizardModal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden border-2 border-slate-200">
+            
+            <!-- Wizard Header -->
+            <div class="bg-slate-900 text-white p-5 flex items-center justify-between">
+                <div>
+                    <h3 class="font-heading font-extrabold text-xl">Post Your Business Advert</h3>
+                    <p class="text-xs text-kasama-400 mt-0.5">Quick & Easy 3-Step Wizard</p>
+                </div>
+                <button onclick="closeWizard()" class="w-9 h-9 bg-slate-800 hover:bg-slate-700 text-white rounded-full flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="bg-slate-100 px-6 py-3 border-b border-slate-200 flex items-center justify-between text-xs font-bold">
+                <span id="stepIndicator1" class="text-kasama-600 flex items-center gap-1">
+                    <span class="w-5 h-5 rounded-full bg-kasama-600 text-white text-[10px] inline-flex items-center justify-center">1</span> Who are you?
+                </span>
+                <span id="stepIndicator2" class="text-slate-400 flex items-center gap-1">
+                    <span class="w-5 h-5 rounded-full bg-slate-300 text-slate-700 text-[10px] inline-flex items-center justify-center">2</span> Advert Details
+                </span>
+                <span id="stepIndicator3" class="text-slate-400 flex items-center gap-1">
+                    <span class="w-5 h-5 rounded-full bg-slate-300 text-slate-700 text-[10px] inline-flex items-center justify-center">3</span> Payment
+                </span>
+            </div>
+
+            <!-- Wizard Form -->
+            <form id="wizardForm" onsubmit="handleWizardSubmit(event)" class="p-5 space-y-5">
+                
+                <!-- STEP 1: Account / Listing Type Selection -->
+                <div id="step1" class="space-y-4">
+                    <p class="text-sm font-bold text-slate-800">Select who is posting this advert:</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <label class="cursor-pointer border-2 border-slate-200 rounded-2xl p-4 hover:border-kasama-500 flex flex-col justify-between transition bg-slate-50 relative group">
+                            <input type="radio" name="listingType" value="individual" checked onchange="updateWizardPrice()" class="sr-only">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-heading font-extrabold text-base text-slate-900">Individual</span>
+                                    <i class="fa-solid fa-user text-kasama-600 text-xl"></i>
+                                </div>
+                                <p class="text-xs text-slate-600">For personal items, farmers, tailors, or small casual sellers.</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between">
+                                <span class="text-xs text-slate-500 font-semibold">Standard Fee:</span>
+                                <span class="font-extrabold text-kasama-700 text-lg">K20</span>
+                            </div>
+                        </label>
+
+                        <label class="cursor-pointer border-2 border-slate-200 rounded-2xl p-4 hover:border-kasama-500 flex flex-col justify-between transition bg-slate-50 relative group">
+                            <input type="radio" name="listingType" value="company" onchange="updateWizardPrice()" class="sr-only">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="font-heading font-extrabold text-base text-slate-900">Registered Business</span>
+                                    <i class="fa-solid fa-building text-amber-600 text-xl"></i>
+                                </div>
+                                <p class="text-xs text-slate-600">For shops, hardware stores, lodges, and registered companies.</p>
+                            </div>
+                            <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between">
+                                <span class="text-xs text-slate-500 font-semibold">Company Fee:</span>
+                                <span class="font-extrabold text-amber-600 text-lg">K100</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <button type="button" onclick="goToStep(2)" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-extrabold py-3.5 rounded-2xl transition text-sm flex items-center justify-center gap-2">
+                        <span>Continue to Details</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- STEP 2: Advert Details -->
+                <div id="step2" class="space-y-4 hidden">
+                    <div>
+                        <label class="block text-xs font-extrabold uppercase text-slate-700 mb-1">Advert Title / Business Name *</label>
+                        <input type="text" id="wizardTitle" required placeholder="e.g., Fresh White Maize Bags or Town Phone Repair" 
+                            class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-sm font-medium focus:border-kasama-500 focus:outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-700 mb-1">Category *</label>
+                            <select id="wizardCategory" required onchange="togglePropertyFields()" class="w-full px-3 py-3 border-2 border-slate-200 rounded-xl text-sm font-medium bg-white focus:border-kasama-500 focus:outline-none">
+                                <option value="Farming & Produce">Farming & Produce</option>
+                                <option value="Houses & Property">Houses & Property for Rent / Sale</option>
+                                <option value="Shops & Retail">Shops & Retail</option>
+                                <option value="Services & Crafts">Services & Crafts</option>
+                                <option value="Lodging & Rooms">Lodging & Rooms</option>
+                                <option value="Hardware & Building">Hardware & Building</option>
+                                <option value="Electronics & Phones">Electronics & Phones</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-700 mb-1">Kasama Location / Township *</label>
+                            <input type="text" id="wizardLocation" required placeholder="e.g. Newtown, Location, Mbala Road, Town Center" 
+                                class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-sm font-medium focus:border-kasama-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <!-- Extra Fields specifically for Houses & Property -->
+                    <div id="propertyFields" class="hidden bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-3.5 space-y-3">
+                        <span class="text-xs font-extrabold text-emerald-900 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-house-user text-kasama-600"></i> House / Rental Details
+                        </span>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-700 mb-1">Property Status</label>
+                                <select id="wizardPropStatus" class="w-full px-2 py-2 border border-slate-300 rounded-xl text-xs font-bold bg-white">
+                                    <option value="AVAILABLE">AVAILABLE NOW</option>
+                                    <option value="RENTED">NOT AVAILABLE / RENTED</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-slate-700 mb-1">Number of Bedrooms</label>
+                                <input type="text" id="wizardBedrooms" placeholder="e.g. 2 Bedrooms, Self-contained" class="w-full px-3 py-2 border border-slate-300 rounded-xl text-xs bg-white">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-700 mb-1">Phone Number (WhatsApp) *</label>
+                            <input type="tel" id="wizardPhone" required placeholder="e.g. 0977 123 456" 
+                                class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-sm font-medium focus:border-kasama-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-700 mb-1">Price / Rent per Month</label>
+                            <input type="text" id="wizardPrice" placeholder="e.g. K1,500 / month or K250" 
+                                class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-sm font-medium focus:border-kasama-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-700 mb-1">Phone Number (WhatsApp) *</label>
+                            <input type="tel" id="wizardPhone" required placeholder="e.g. 0977 123 456" 
+                                class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-sm font-medium focus:border-kasama-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-extrabold uppercase text-slate-700 mb-1">Price (Optional)</label>
+                            <input type="text" id="wizardPrice" placeholder="e.g. K250 or Negotiable" 
+                                class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-sm font-medium focus:border-kasama-500 focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-extrabold uppercase text-slate-700 mb-1">Simple Description *</label>
+                <!-- STEP 3: Add-ons, Discount Code & Mobile Money Guide -->
+                <div id="step3" class="space-y-4 hidden">
+                    
+                    <!-- Add-ons Selection -->
+                    <div class="bg-slate-50 p-4 rounded-2xl border-2 border-slate-200 space-y-2">
+                        <span class="block text-xs font-extrabold text-slate-800 uppercase tracking-wider">Optional Extra Boosts</span>
+                        
+                        <label class="flex items-center justify-between text-xs text-slate-800 font-bold cursor-pointer">
+                            <span class="flex items-center gap-2">
+                                <input type="checkbox" id="addFeatured" onchange="updateWizardPrice()" class="w-4 h-4 rounded text-kasama-600">
+                                <span>Put Advert at the Top (+K50)</span>
+                            </span>
+                        </label>
+
+                        <label class="flex items-center justify-between text-xs text-slate-800 font-bold cursor-pointer">
+                            <span class="flex items-center gap-2">
+                                <input type="checkbox" id="addRadio" onchange="updateWizardPrice()" class="w-4 h-4 rounded text-kasama-600">
+                                <span>Broadcast on Radio Mano (+K80)</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Share Discount Code Entry -->
+                    <div class="bg-amber-50 p-3.5 rounded-2xl border-2 border-amber-300 space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold text-amber-900 flex items-center gap-1.5">
+                                <i class="fa-solid fa-ticket text-amber-600"></i> Have a Discount / Share Code?
+                            </span>
+                            <button type="button" onclick="openShareModal()" class="text-[10px] text-amber-800 underline font-bold">Get Code</button>
+                        </div>
+                        <div class="flex gap-2">
+                            <input type="text" id="discountCodeInput" placeholder="e.g. KASAMA5 or SHARE10" 
+                                class="w-full px-3 py-2 border-2 border-amber-200 rounded-xl text-xs font-bold uppercase placeholder:normal-case placeholder:font-normal focus:border-amber-500 focus:outline-none">
+                            <button type="button" onclick="applyDiscountCode()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold px-4 py-2 rounded-xl text-xs whitespace-nowrap transition">
+                                Apply
+                            </button>
+                        </div>
+                        <p id="discountMsg" class="text-[11px] font-bold hidden"></p>
+                    </div>
+
+                    <!-- Total Amount Display -->
+                    <div class="bg-kasama-900 text-white p-4 rounded-2xl flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-kasama-300 block font-medium">Total Amount to Pay:</span>
+                            <span class="font-heading font-extrabold text-2xl text-amber-400" id="wizardTotalDisplay">K20 ZMW</span>
+                        </div>
+                        <span class="text-xs bg-kasama-800 text-kasama-200 px-3 py-1.5 rounded-lg border border-kasama-700 font-bold">Mobile Money Ready</span>
+                    </div>
+
+                    <!-- Payment Instructions -->
+                    <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 text-xs space-y-2 text-slate-800">
+                        <p class="font-extrabold text-slate-900 flex items-center gap-1.5">
+                            <i class="fa-solid fa-mobile-screen-button text-amber-600"></i> How to Pay via Mobile Money:
+                        </p>
+                        <ol class="list-decimal list-inside space-y-1 font-medium text-slate-700">
+                            <li>Send total amount to <strong>+260 977 000 111</strong> (Airtel) or <strong>+260 966 000 222</strong> (MTN).</li>
+                            <li>Use reference: <span class="font-bold text-slate-900">KASAMA ADVERT</span></li>
+                            <li>Tap "Publish Advert Now" below to submit!</li>
+                        </ol>
+                    </div>
+
+                    <div class="flex items-center justify-between gap-3 pt-2">
+                        <button type="button" onclick="goToStep(2)" class="w-1/3 bg-slate-200 text-slate-800 font-bold py-3.5 rounded-xl text-xs">
+                            <i class="fa-solid fa-arrow-left mr-1"></i> Back
+                        </button>
+                        <button type="submit" class="w-2/3 bg-kasama-600 hover:bg-kasama-700 text-white font-extrabold py-3.5 rounded-xl text-xs shadow-lg transition">
+                            <i class="fa-solid fa-check mr-1"></i> Publish Advert Now
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 border-2 border-slate-200 shadow-2xl">
+            <div class="flex items-center justify-between border-b pb-3">
+                <h3 class="font-heading font-extrabold text-lg text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-comment-dots text-kasama-600"></i> User Feedback & Ideas
+                </h3>
+                <button onclick="closeFeedbackModal()" class="text-slate-400 hover:text-slate-700 text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <form onsubmit="handleFeedbackSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-extrabold uppercase text-slate-700 mb-1.5">How easy is this website to use?</label>
+                    <div class="flex items-center justify-between px-2 text-2xl text-amber-400" id="starRating">
+                        <i class="fa-solid fa-star cursor-pointer hover:scale-125 transition" onclick="setRating(1)"></i>
+                        <i class="fa-solid fa-star cursor-pointer hover:scale-125 transition" onclick="setRating(2)"></i>
+                        <i class="fa-solid fa-star cursor-pointer hover:scale-125 transition" onclick="setRating(3)"></i>
+                        <i class="fa-solid fa-star cursor-pointer hover:scale-125 transition" onclick="setRating(4)"></i>
+                        <i class="fa-solid fa-star cursor-pointer hover:scale-125 transition" onclick="setRating(5)"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-extrabold uppercase text-slate-700 mb-1">Feedback Category</label>
+                    <select id="feedbackCategory" class="w-full p-3 border-2 border-slate-200 rounded-xl text-xs font-semibold bg-slate-50">
+                        <option value="General Suggestion">General Suggestion / Idea</option>
+                        <option value="Ease of Use">Ease of Use Improvement</option>
+                        <option value="Report Bug">Report Technical Problem</option>
+                        <option value="New Feature Request">Request New Kasama Feature</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-extrabold uppercase text-slate-700 mb-1">Your Feedback / Comment *</label>
+                    <textarea id="feedbackComment" rows="3" required placeholder="Tell us how we can make Kasama Adverts better for you..." 
+                        class="w-full p-3 border-2 border-slate-200 rounded-xl text-xs font-medium focus:border-kasama-500 focus:outline-none"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-kasama-600 hover:bg-kasama-700 text-white font-extrabold py-3.5 rounded-xl text-xs shadow-md transition">
+                    Submit Feedback
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Share for Discount Modal -->
+    <div id="shareModal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 border-2 border-slate-200 shadow-2xl text-center">
+            <div class="flex items-center justify-between border-b pb-3 text-left">
+                <h3 class="font-heading font-extrabold text-lg text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-gift text-amber-500"></i> Share & Get K5 Discount
+                </h3>
+                <button onclick="closeShareModal()" class="text-slate-400 hover:text-slate-700 text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-4 space-y-2">
+                <p class="text-xs text-slate-700 font-medium">
+                    Share Kasama Business Adverts with 3 friends or WhatsApp groups in Kasama to receive a <strong>K5 discount code</strong> on your advert listing!
+                </p>
+                <div class="bg-white p-2.5 rounded-xl border border-amber-300 flex items-center justify-between font-mono font-extrabold text-kasama-700 text-sm">
+                    <span>Discount Code: <strong class="text-slate-900">KASAMA5</strong></span>
+                    <button onclick="copyDiscountCode()" class="bg-slate-900 text-white text-[10px] font-sans px-3 py-1 rounded-lg">Copy Code</button>
+                </div>
+            </div>
+
+            <div class="space-y-2 pt-2">
+                <a href="https://api.whatsapp.com/send?text=Muli%20Shani!%20Check%20out%20Kasama%20Business%20Adverts%20to%20buy,%20sell,%20or%20promote%20your%20business%20in%20Kasama!" 
+                    target="_blank" onclick="showToast('Shared! Use code KASAMA5 in step 3 when posting your advert.')"
+                    class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 rounded-2xl text-xs flex items-center justify-center gap-2 shadow-lg transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Share Directly to WhatsApp
+                </a>
+                <button onclick="copyShareLink()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold py-3 rounded-2xl text-xs border border-slate-300 transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-copy"></i> Copy Website Link
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Rules Modal -->
+<!-- ... existing code me ... -->
+            <div>
+                <h4 class="font-heading font-extrabold text-base text-white mb-2">Help & Community</h4>
+                <ul class="space-y-2">
+                    <li><button onclick="openFeedbackModal()" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-comment-dots"></i> Give Feedback</button></li>
+                    <li><button onclick="openShareModal()" class="hover:text-white transition flex items-center gap-1.5"><i class="fa-solid fa-gift"></i> Get K5 Discount Code</button></li>
+                    <li><button onclick="openSecurityModal()" class="hover:text-white transition">Safety Tips & Rules</button></li>
+                    <li><button onclick="openTermsModal()" class="hover:text-white transition">Terms & Conditions</button></li>
+                    <li><button onclick="openDisclaimerModal()" class="hover:text-white transition">Platform Disclaimer</button></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-heading font-extrabold text-base text-white mb-2">Kasama Town Locations</h4>
+                <p class="text-slate-400">Central Market • Town Center • Location Township • Mbala Road • Industrial Area</p>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 border-t border-slate-800 pt-6 text-center text-slate-500">
+            <p>&copy; 2026 Kasama Business Adverts • Northern Province, Zambia</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Initial Mock Data curated for Kasama context
+        const initialData = [
+            {
+                id: 1,
+                title: "2 Bedroom Self-Contained House for Rent",
+                category: "Houses & Property",
+                type: "individual",
+                location: "Newtown, Kasama",
+                phone: "+260977443322",
+                price: "K2,200 / month",
+                description: "Spacious 2 bedroom house with wall fence, motorized borehole water, paved yard, and ZESCO pre-paid meter.",
+                featured: true,
+                isProperty: true,
+                availability: "AVAILABLE",
+                bedrooms: "2 Bedrooms"
+            },
+            {
+                id: 2,
+                title: "Kasama Maize & Bean Seed Supply",
+                category: "Farming & Produce",
+                type: "company",
+                location: "Central Market, Kasama",
+                phone: "+260977112233",
+                price: "K350 / bag",
+                description: "Quality hybrid maize seed and fresh organic red beans available in bulk for farming season.",
+                featured: true
+            },
+            {
+                id: 3,
+                title: "3 Bedroom House for Rent - Near Hospital",
+                category: "Houses & Property",
+                type: "company",
+                location: "Location Township, Kasama",
+                phone: "+260966889900",
+                price: "K3,500 / month",
+                description: "Newly built modern 3 bedroom house with master self-contained, overhead tank, and secure electric fence.",
+                featured: false,
+                isProperty: true,
+                availability: "RENTED",
+                bedrooms: "3 Bedrooms"
+            },
+            {
+                id: 4,
+                title: "Town Center Phone Repairs & Spares",
+                category: "Electronics & Phones",
+                type: "individual",
+                location: "Town Center, Kasama",
+                phone: "+260966445566",
+                price: "Fast Service",
+                description: "Screen replacement, battery changes, charging port repairs for Samsung, Tecno, and iPhone.",
+                featured: false
+            }
+        ];
+
+        const categories = [
+            { name: "All", icon: "fa-border-all" },
+            { name: "Houses & Property", icon: "fa-house-chimney" },
+            { name: "Farming & Produce", icon: "fa-wheat-awn" },
+            { name: "Shops & Retail", icon: "fa-basket-shopping" },
+            { name: "Services & Crafts", icon: "fa-screwdriver-wrench" },
+            { name: "Lodging & Rooms", icon: "fa-bed" },
+            { name: "Hardware & Building", icon: "fa-hammer" },
+            { name: "Electronics & Phones", icon: "fa-mobile-screen" }
+        ];
+
+        let adverts = [...initialData];
+        let currentCategory = "All";
+
+        // Toggle extra property fields inside wizard
+        function togglePropertyFields() {
+            const cat = document.getElementById('wizardCategory').value;
+            const propFields = document.getElementById('propertyFields');
+            if (cat === 'Houses & Property') {
+                propFields.classList.remove('hidden');
+            } else {
+                propFields.classList.add('hidden');
+            }
+        }
+
+        // Toggle Availability Status for Houses & Property
+        function togglePropertyStatus(id) {
+            const ad = adverts.find(a => a.id === id);
+            if (ad) {
+                ad.availability = ad.availability === "AVAILABLE" ? "RENTED" : "AVAILABLE";
+                renderGrid();
+                showToast(`Property status updated to "${ad.availability === 'AVAILABLE' ? 'AVAILABLE' : 'NOT AVAILABLE / RENTED'}"`);
+            }
+        }
+
+        // Render Adverts Grid with Property Status Support
+        function renderGrid() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const grid = document.getElementById('advertsGrid');
+            const emptyState = document.getElementById('emptyState');
+            const adCount = document.getElementById('adCount');
+            const resultsTitle = document.getElementById('resultsTitle');
+
+            const filtered = adverts.filter(ad => {
+                const matchesCat = currentCategory === "All" || ad.category === currentCategory;
+                const matchesSearch = ad.title.toLowerCase().includes(query) || 
+                                     ad.description.toLowerCase().includes(query) ||
+                                     ad.location.toLowerCase().includes(query);
+                return matchesCat && matchesSearch;
+            });
+
+            adCount.textContent = `${filtered.length} ${filtered.length === 1 ? 'Item' : 'Items'}`;
+            resultsTitle.textContent = currentCategory === "All" ? "Latest Kasama Adverts" : `${currentCategory} in Kasama`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = "";
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            grid.innerHTML = filtered.map(ad => {
+                const isCompany = ad.type === "company";
+                const cleanPhone = ad.phone.replace(/[^0-9+]/g, '');
+                const isAvailable = ad.availability !== "RENTED";
+
+                return `
+                    <div class="bg-white rounded-3xl border-2 ${isCompany ? 'border-amber-300 shadow-md ring-1 ring-amber-300' : 'border-slate-200 shadow-sm'} p-5 flex flex-col justify-between space-y-4 hover:shadow-xl transition relative">
+                        
+                        ${ad.featured ? `
+                            <span class="absolute -top-3 left-5 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 text-[10px] font-extrabold px-3 py-1 rounded-full shadow uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-bolt"></i> Featured
+                            </span>
+                        ` : ''}
+
+                        <div>
+                            <!-- Header Tag & Property Status -->
+                            <div class="flex items-center justify-between gap-2 mb-2 ${ad.featured ? 'mt-2' : ''}">
+                                <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-200">
+                                    ${ad.category}
+                                </span>
+                                
+                                ${ad.isProperty ? `
+                                    <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full ${isAvailable ? 'bg-emerald-100 text-emerald-900 border border-emerald-300' : 'bg-red-100 text-red-800 border border-red-300'}">
+                                        <i class="fa-solid ${isAvailable ? 'fa-circle-check text-emerald-600' : 'fa-circle-xmark text-red-600'} mr-1"></i>
+                                        ${isAvailable ? 'AVAILABLE NOW' : 'NOT AVAILABLE / RENTED'}
+                                    </span>
+                                ` : `
+                                    <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full ${isCompany ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-kasama-100 text-kasama-800 border border-kasama-300'}">
+                                        ${isCompany ? 'Verified Shop' : 'Individual'}
+                                    </span>
+                                `}
+                            </div>
+
+                            <!-- Title -->
+                            <h3 class="font-heading font-extrabold text-lg text-slate-900 mb-1 leading-snug">
+                                ${ad.title}
+                            </h3>
+
+                            <!-- Location & Bedrooms -->
+                            <div class="flex flex-wrap items-center gap-2 mb-3 text-xs font-bold text-slate-500">
+                                <span class="flex items-center gap-1">
+                                    <i class="fa-solid fa-location-dot text-kasama-600"></i> ${ad.location}
+                                </span>
+                                ${ad.bedrooms ? `
+                                    <span class="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md border border-slate-200 text-[11px]">
+                                        <i class="fa-solid fa-bed text-slate-500 mr-1"></i> ${ad.bedrooms}
+                                    </span>
+                                ` : ''}
+                            </div>
+
+                            <!-- Description -->
+                            <p class="text-xs text-slate-600 font-medium leading-relaxed mb-3">
+                                ${ad.description}
+                            </p>
+
+                            <!-- Price Tag -->
+                            ${ad.price ? `
+                                <div class="inline-block bg-slate-100 text-slate-900 font-extrabold text-xs px-3 py-1.5 rounded-xl border border-slate-200">
+                                    ${ad.price}
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <!-- Action Buttons & Landlord Status Switcher -->
+                        <div class="space-y-2 pt-2 border-t border-slate-100">
+                            <div class="grid grid-cols-2 gap-2">
+                                <a href="https://wa.me/${cleanPhone}?text=Hello!%20I%20am%20inquiring%20about%20your%20property/advert%20on%20Kasama%20Business%20Adverts:%20${encodeURIComponent(ad.title)}" target="_blank" 
+                                    class="${isAvailable ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-slate-400 cursor-not-allowed'} text-white font-extrabold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+                                </a>
+                                <a href="tel:${cleanPhone}" 
+                                    class="${isAvailable ? 'bg-slate-900 hover:bg-slate-800' : 'bg-slate-400 cursor-not-allowed'} text-white font-extrabold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 transition">
+                                    <i class="fa-solid fa-phone text-xs"></i> Call
+                                </a>
+                            </div>
+
+                            ${ad.isProperty ? `
+                                <button onclick="togglePropertyStatus(${ad.id})" class="w-full text-[11px] font-bold py-1.5 px-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 transition flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-rotate text-kasama-600"></i> Toggle Landlord Status: 
+                                    <strong class="${isAvailable ? 'text-emerald-700' : 'text-red-600'}">${isAvailable ? 'Set as RENTED' : 'Set as AVAILABLE'}</strong>
+                                </button>
+                            ` : ''}
+
+                            <button onclick="openReportModal('${ad.title.replace(/'/g, "\\'")}')" class="w-full text-[10px] text-slate-400 hover:text-red-600 font-bold text-right transition">
+                                <i class="fa-solid fa-flag"></i> Report Advert
+                            </button>
+                        </div>
+
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function handleWizardSubmit(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('wizardTitle').value;
+            const category = document.getElementById('wizardCategory').value;
+            const location = document.getElementById('wizardLocation').value;
+            const phone = document.getElementById('wizardPhone').value;
+            const price = document.getElementById('wizardPrice').value;
+            const description = document.getElementById('wizardDescription').value;
+            const type = document.querySelector('input[name="listingType"]:checked').value;
+            const isFeatured = document.getElementById('addFeatured').checked;
+            
+            const isProperty = category === 'Houses & Property';
+            const propStatus = isProperty ? document.getElementById('wizardPropStatus').value : 'AVAILABLE';
+            const bedrooms = isProperty ? document.getElementById('wizardBedrooms').value : '';
+
+            const newAd = {
+                id: Date.now(),
+                title: title,
+                category: category,
+                type: type,
+                location: location,
+                phone: phone,
+                price: price || "Contact for details",
+                description: description,
+                featured: isFeatured,
+                isProperty: isProperty,
+                availability: propStatus,
+                bedrooms: bedrooms
+            };
+
+            adverts.unshift(newAd);
+            closeWizard();
+            document.getElementById('wizardForm').reset();
+            document.getElementById('propertyFields').classList.add('hidden');
+            renderGrid();
+            showToast("Advert submitted! Send Mobile Money to activate immediately.");
+        }
+
+        // Modal Helpers
+        function openSecurityModal() { document.getElementById('securityModal').classList.remove('hidden'); }
+        function closeSecurityModal() { document.getElementById('securityModal').classList.add('hidden'); }
+        function openTermsModal() { document.getElementById('termsModal').classList.remove('hidden'); }
+        function closeTermsModal() { document.getElementById('termsModal').classList.add('hidden'); }
+        function openDisclaimerModal() { document.getElementById('disclaimerModal').classList.remove('hidden'); }
+        function closeDisclaimerModal() { document.getElementById('disclaimerModal').classList.add('hidden'); }
+
+        function openReportModal(title) {
+            document.getElementById('reportAdTitleName').textContent = title;
+            document.getElementById('reportModal').classList.remove('hidden');
+        }
+        function closeReportModal() { document.getElementById('reportModal').classList.add('hidden'); }
+        
+        function submitReport() {
+            closeReportModal();
+            showToast("Thank you. Report received for admin review.");
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 4000);
+        }
+    </script>
+</body>
+</html>
